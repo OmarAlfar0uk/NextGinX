@@ -1,0 +1,12 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { Mail, MessageCircle, ArrowUpRight } from "lucide-react";
+import { company } from "@/data/company";
+import { copy, isLocale } from "@/lib/i18n";
+import { pageMetadata } from "@/lib/metadata";
+import { ContactForm } from "@/components/contact-form";
+import { PageIntro } from "@/components/page-intro";
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> { const { locale } = await params; if (!isLocale(locale)) return {}; const t = copy(locale); return pageMetadata(locale, "/contact", t.nav.contact, t.contact.intro); }
+export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) { const { locale: value } = await params; if (!isLocale(value)) notFound(); const t = copy(value);
+  return <><PageIntro eyebrow={t.contact.eyebrow} title={t.contact.title} text={t.contact.intro} /><section className="contact-section section-pad"><div className="wrap contact-layout"><div className="contact-aside"><span className="eyebrow eyebrow-dark"><i />{value === "ar" ? "تواصل مباشر" : "Direct contact"}</span><h2>{t.footer.contact}</h2><div className="contact-links">{company.email ? <a href={`mailto:${company.email}`}><span><Mail size={20} /></span><div><small>{t.contact.emailLabel}</small><b>{company.email}</b></div><ArrowUpRight size={17} /></a> : <div className="contact-placeholder"><span><Mail size={20} /></span><div><small>{t.contact.emailLabel}</small><b>{value === "ar" ? "سيُضاف عند تزويدنا بالبريد" : "To be configured"}</b></div></div>}{company.whatsapp ? <a href={company.whatsapp} target="_blank" rel="noreferrer"><span><MessageCircle size={20} /></span><div><small>{t.contact.whatsappLabel}</small><b>{value === "ar" ? "ابدأ محادثة" : "Start a conversation"}</b></div><ArrowUpRight size={17} /></a> : <div className="contact-placeholder"><span><MessageCircle size={20} /></span><div><small>{t.contact.whatsappLabel}</small><b>{value === "ar" ? "سيُضاف عند تزويدنا بالرابط" : "To be configured"}</b></div></div>}</div><div className="contact-aside-note"><span className="contact-note-dot" /><p>{value === "ar" ? "نخدم الشركات الناشئة والمؤسسات في مصر والسعودية ودول الخليج والأسواق الدولية." : "Supporting startups and businesses in Egypt, Saudi Arabia, across the GCC, and internationally."}</p></div></div><div className="contact-form-card"><h2>{t.contact.formTitle}</h2><ContactForm locale={value} /></div></div></section></>;
+}

@@ -1,0 +1,51 @@
+{
+  "name": "nextginx-corporate-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "prisma generate",
+    "db:status": "prisma migrate status",
+    "db:verify": "node scripts/verify-db.mjs",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "tsx prisma/seed.ts",
+    "admin:bootstrap": "node scripts/bootstrap-admin.mjs",
+    "mail:outbox": "node scripts/process-outbox.mjs",
+    "test:integration": "node --test tests/integration/postgres.test.mjs",
+    "test:auth": "node scripts/auth-smoke.mjs"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "@tailwindcss/postcss": "^4.1.5",
+    "argon2": "^0.45.1",
+    "lucide-react": "^0.468.0",
+    "next": "^15.3.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.5",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "eslint": "^9.22.0",
+    "eslint-config-next": "^15.3.5",
+    "prisma": "^6.19.3",
+    "typescript": "^5.8.2"
+  },
+  "allowScripts": {
+    "@prisma/client@6.19.3": true,
+    "prisma@6.19.3": true,
+    "@prisma/engines@6.19.3": true,
+    "argon2@0.45.1": true
+  },
+  "overrides": {
+    "postcss": "^8.5.32"
+  }
+}

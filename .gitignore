@@ -1,0 +1,28 @@
+# Visual Studio
+.vs/
+**/.vs/
+*.suo
+*.user
+*.userosscache
+
+# Build outputs
+bin/
+obj/
+
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+dist/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+# TypeScript build cache
+*.tsbuildinfo

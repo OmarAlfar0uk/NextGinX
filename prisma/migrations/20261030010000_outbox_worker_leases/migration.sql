@@ -1,0 +1,1 @@
+ALTER TABLE "EmailOutbox" ADD COLUMN "lockedAt" TIMESTAMP(3);
